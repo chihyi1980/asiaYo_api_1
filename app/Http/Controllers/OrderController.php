@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function store(OrderRequest $request)
+    public function transOrder(OrderRequest $request)
     {
         $validated = $request->validated();
         
@@ -33,7 +33,6 @@ class OrderController extends Controller
         if ($validated['currency'] != 'USD' && $validated['currency'] != 'TWD') {
             return response()->json(['error' => 'Currency format is wrong'], 400);
         }
-
 
         //currency轉換，TWD = USD * 31
         if ($validated['currency'] === 'USD') {
