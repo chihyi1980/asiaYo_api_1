@@ -114,4 +114,22 @@ class OrderTest extends TestCase
         $response->assertStatus(400);
         $response->assertJson(['error' => 'Currency format is wrong']);
     }
+
+    public function test_order_validation_7()
+    {
+        $response = $this->postJson('/api/orders', [
+            'id' => 'A0000001',
+            'name' => 'Melody Holiday Inn',
+            'address' => [
+                'city' => 'taipei-city',
+                'district' => 'da-an-district',
+                'street' => 'fuxing-south-road',
+            ],
+            'price' => 1990,
+            'currency' => 'USD',
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJson(['price'=> 61690, 'currency' => 'TWD']);
+    }
 }
