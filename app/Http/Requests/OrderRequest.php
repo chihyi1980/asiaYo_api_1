@@ -20,7 +20,7 @@ class OrderRequest extends FormRequest
             'address.district' => 'required|string',
             'address.street' => 'required|string',
             'price' => 'required|numeric',
-            'currency' => 'required|string|in:TWD,USD'
+            'currency' => 'required|string'
         ];
     }
 }
